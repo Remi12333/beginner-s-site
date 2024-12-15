@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleuser.css">
+    <title>Кабінет користувача</title>
+</head>
+<body>
+    <header>
+        <h1>Кабінет користувача</h1>
+    </header>
+    <div id="authPrompt" class="auth-prompt" style="display: none;">
+        <h2>Вхід в систему</h2>
+        <p>Будь ласка, увійдіть у свій обліковий запис або зареєструйтеся, щоб продовжити.</p>
+        <a href="login.html" class="btn-login">Увійти</a>
+        <a href="register.html" class="btn-register">Зареєструватися</a>
+    </div>
+
+    <div id="content" class="content" style="display: none;">
+        <h2>Ваші бронювання</h2>
+        <div id="bookingInfo" class="booking-details">
+            <p>Інформація про бронювання відображатиметься тут після створення бронювання.</p>
+        </div>
+        <a href="lobby.html" class="btn-back">Назад до Lobby</a>
+    </div>
+
+    <script>
+        const isAuthenticated = JSON.parse(localStorage.getItem('isAuthenticated'));
+
+        if (isAuthenticated) {
+            document.getElementById('content').style.display = 'block';
+
+            const bookingData = JSON.parse(localStorage.getItem('userBooking'));
+
+            if (bookingData) {
+                document.getElementById('bookingInfo').innerHTML = `
+                    <h3>Інформація про бронювання:</h3>
+                    <ul>
+                        <li>Місце: ${bookingData.spot}</li>
+                        <li>Будинок: ${bookingData.house || 'Не вибрано'}</li>
+                        <li>Дата: ${bookingData.date}</li>
+                        <li>Час в'їзду: ${bookingData.checkin}</li>
+                        <li>Кількість днів: ${bookingData.days}</li>
+                    </ul>`; 
+            }
+        } else {
+            document.getElementById('authPrompt').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

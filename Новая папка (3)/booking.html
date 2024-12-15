@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бронювання місць</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+        }
+        form {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .back-button a {
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .back-button a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Бронювання місць</h1>
+    </header>
+    <div class="content">
+        <h2>Заповніть форму для бронювання</h2>
+        <form id="bookingForm">
+            <label for="spot">Оберіть місце (1-32):</label>
+            <input type="spot" id="spot" name="spot" min="1" max="32" required>
+
+            <label for="house">Оберіть будинок (1-4):</label>
+                <input type="number" id="house" name="house" min="1" max="4" required>
+
+            <label for="date">Оберіть дату:</label>
+            <input type="number" id="date" name="date" required>
+
+            <label for="time">Оберіть час в'їзду:</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="days">Кількість днів (максимум 7):</label>
+            <input type="number" id="days" name="days" min="1" max="7" required>
+
+            <button type="submit">Забронювати</button>
+        </form>
+        <div class="back-button">
+            <a href="lobby.html">Повернутися до лобі</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const spot = document.getElementById('spot').value;
+            const house = document.getElementById('house').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const days = document.getElementById('days').value;
+
+            if (!spot || !date || !time || !days) {
+                alert('Будь ласка, заповніть усі обовязкові поля.');
+                return;
+            }
+
+            const checkinTime = new Date(`${date}T${time}`);
+            checkinTime.setHours(checkinTime.getHours() - 1);
+
+            const bookingData = {
+                spot,
+                house: house || null,
+                date,
+                checkin: checkinTime.toTimeString().slice(0, 5),
+                days
+            };
+
+            localStorage.setItem('userBooking', JSON.stringify(bookingData));
+
+            alert('Ваше бронювання збережено! Перейдіть до Кабінету користувача для перегляду деталей.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

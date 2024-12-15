@@ -1,0 +1,78 @@
+
+body {
+    height: 100vh;
+    background: url('https://media.istockphoto.com/id/814605432/photo/the-fisherman.jpg?s=612x612&w=0&k=20&c=R4LWfhzxB1g-JVwIaXvKAfdRY6ZW6gQTggmuzUXTyjU=') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.login-container {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 300px;
+}
+
+.login-form h1 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+button {
+    background: #ffffff;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #f0f0f0;
+}
+
+p {
+    color: #fff;
+}
+
+a {
+    color: #ffa726;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

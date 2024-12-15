@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="lobbystyle.css">
+    <title>Риболовля</title>
+</head>
+<body>
+    <header>
+        <h1>Риболовля</h1>
+        <button class="menu-button" onclick="toggleMenu()">Меню</button>
+    </header>
+    <div class="menu" id="menu">
+        <span class="close-menu" onclick="toggleMenu()">✖ Закрити</span>
+        <a href="login.html"><span class="menu-icon">🔑</span>Вхід</a>
+        <a href="user.html"><span class="menu-icon">👤</span>Кабінет користувача</a>
+        <a href="booking.html"><span class="menu-icon">📅</span>Бронювання місць</a>
+        <a href="photos.html"><span class="menu-icon">📷</span>Фото матеріали</a>
+        <a href="pricing.html"><span class="menu-icon">💵</span>Розцінки</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
